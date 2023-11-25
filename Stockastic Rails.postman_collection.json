@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "ede2d696-b93a-4961-95f5-e015aa9af04a",
+		"name": "Stockastic Rails",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18725465",
+		"_collection_link": "https://red-trinity-546946.postman.co/workspace/mo-lar~8c4a4163-ad35-4a69-ac66-e50190f8b541/collection/18725465-ede2d696-b93a-4961-95f5-e015aa9af04a?action=share&source=collection_link&creator=18725465"
+	},
+	"item": [
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"email\": \"joaojorgeevangelista@teste.com\",\r\n        \"password\": \"joao1234\",\r\n        \"password_confirmation\": \"joao1234\",\r\n        \"username\": \"joaoevan\",\r\n        \"name\": \"João Jorge Evangelista Fernandes\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"email\": \"joaojorgeevangelista@teste.com\",\r\n        \"password\": \"joao1234\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI5NWVhNzU0My1kNWFmLTQ4OWUtYTAyMC02OTBhOTBiZjc2MTkiLCJzdWIiOiIzIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNzAwOTE3ODczLCJleHAiOjE3MDA5MjE0NzN9.nU5pg8JT_SO2kQrG-DZMXSguJxUsGlLOROxDPtygjgc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"email\": \"joaojorgeevangelista@outlook.com\",\r\n        \"password\": \"joao1234\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/logout",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
