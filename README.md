@@ -14,6 +14,14 @@ Comandos necessários para rodar a aplicação.
 bundle install
 ```
 
+* Agora, será necessário rodar o seguinte comando para aplicar todas as migrations:
+
+```
+rails db:migrate
+```
+
+* Em `/config`, gere o arquivo chamado `master.key` e dentro dele insira o token necessário;
+
 * Em seguida, para inicializar o projeto, basta rodar:
 
 ```
