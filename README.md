@@ -1,24 +1,45 @@
-# README
+# Stockastic-Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Comandos necessários para rodar a aplicação.
 
-Things you may want to cover:
+## Pré-requisitos:
+* [Ruby](https://www.ruby-lang.org/pt/downloads/)
+* [Ruby on Rails](https://guides.rubyonrails.org/getting_started.html)
 
-* Ruby version
+## Configuração:
 
-* System dependencies
+* Primeiro será necessário rodar o seguinte comando no diretório do projeto:
 
-* Configuration
+```
+bundle install
+```
 
-* Database creation
+* Em seguida, para inicializar o projeto, basta rodar:
 
-* Database initialization
+```
+rails server
+```
 
-* How to run the test suite
+## Utilização
 
-* Services (job queues, cache servers, search engines, etc.)
+Inicialmente, `Stockastic-Rails` é uma API utilizada para autenticação do Front `Stockastic-Front`, para tal, ela fornece alguns endpoints para signup de usuário, login e logout, [aqui você pode encontrar uma Collection Postman com a documentação de todos esses endpoints](https://github.com/JoaoJorgeEF/stockastic-rails/blob/main/Stockastic%20Rails.postman_collection.json), basta fazer o download e abrir com o aplicativo do Postman:
 
-* Deployment instructions
+### POST Signup:
 
-* ...
+<img src="readme-images\Signup.png"/>
+
+### POST Login:
+
+<img src="readme-images\Login.png"/>
+
+A chamada ao endpoint de Login irá gerar nos Headers da resposta, um token de `Authorization`, na seguinte estrutura "Bearer {TOKEN_JWT}"
+
+<img src="readme-images\Token.png"/>
+
+### DELETE Logout:
+
+O Token recebido pelo endpoint de login deverá ser enviado nos Headers do endpoint de Logout para que o usuário consiga finalizar sua sessão com sucesso
+
+<img src="readme-images\TokenLogout.png"/>
+
+<img src="readme-images\Logout.png"/>
