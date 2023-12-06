@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_25_125258) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_05_124537) do
+  create_table "produtos", force: :cascade do |t|
+    t.string "nome"
+    t.datetime "validade"
+    t.string "descricao"
+    t.decimal "preco_unitario"
+    t.integer "quantidade_minima", default: 0
+    t.integer "quantidade_atual", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_produtos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "produto_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produto_id"], name: "index_user_produtos_on_produto_id"
+    t.index ["user_id"], name: "index_user_produtos_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
@@ -28,4 +48,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_25_125258) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "user_produtos", "produtos"
+  add_foreign_key "user_produtos", "users"
 end
