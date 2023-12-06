@@ -1,9 +1,10 @@
 class ProdutosController < ApplicationController
-  before_action :set_produto, only: %i[ show update destroy incrementar_quantidade decrementar_quantidade]
+  before_action :set_produto, only: %i[show update destroy incrementar_quantidade decrementar_quantidade]
+  before_action :authenticate_user!
 
   # GET /produtos
   def index
-    @produtos = Produto.all
+    @produtos = Produto.by_user(current_user.id)
 
     render json: @produtos
   end
@@ -16,8 +17,8 @@ class ProdutosController < ApplicationController
   # POST /produtos
   def create
     @produto = Produto.new(produto_params)
-
-    if @produto.save
+    @produto.users << current_user
+    if @produto.save!
       render json: @produto, status: :created, location: @produto
     else
       render json: @produto.errors, status: :unprocessable_entity
@@ -34,8 +35,8 @@ class ProdutosController < ApplicationController
   end
 
   def incrementar_quantidade
-    @produto.incrementar_quantidade(params[:quantidade])
-    if @produto.save
+    @produto.incrementar_quantidade(params[:quantidade].to_i)
+    if @produto.save!
       render json: @produto
     else
       render json: @produto.errors, status: :unprocessable_entity
@@ -43,7 +44,7 @@ class ProdutosController < ApplicationController
   end
 
   def decrementar_quantidade
-    @produto.decrementar_quantidade(params[:quantidade])
+    @produto.decrementar_quantidade(params[:quantidade].to_i)
     if @produto.save
       render json: @produto
     else
@@ -64,6 +65,6 @@ class ProdutosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def produto_params
-      params.require(:produto).permit(:nome, :validade, :descricao, :preco_unitario, :quantidade_minima)
+      params.require(:produto).permit(:nome, :validade, :descricao, :preco_unitario, :quantidade_atual, :quantidade_minima)
     end
 end

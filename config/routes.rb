@@ -1,11 +1,4 @@
 Rails.application.routes.draw do
-  resources :user_produtos
-  resources :produtos do
-    member do
-      match :incrementar_quantidade, via: [:put, :patch]
-      match :decrementar_quantidade, via: [:put, :patch]
-    end
-  end
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
@@ -15,6 +8,15 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  resources :user_produtos
+  resources :produtos do
+    member do
+      match :incrementar_quantidade, via: [:put, :patch]
+      match :decrementar_quantidade, via: [:put, :patch]
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

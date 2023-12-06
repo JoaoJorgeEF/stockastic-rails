@@ -16,8 +16,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_05_124537) do
     t.datetime "validade"
     t.string "descricao"
     t.decimal "preco_unitario"
-    t.integer "quantidade_minima"
-    t.integer "quantitade_atual"
+    t.integer "quantidade_minima", default: 0
+    t.integer "quantidade_atual", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
