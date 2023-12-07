@@ -18,10 +18,20 @@ RSpec.describe "/produtos", type: :request do
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
+    # {
+    #   nome: FFaker::Name.unique.name,
+    #   descricao: FFaker::LoremBR.paragraph,
+    #   validade: DateTime.now,
+    #   quantidade_minima: 2,
+    #   quantidade_atual: 5,
+    #   created_at: DateTime.now,
+    #   updated_at: DateTime.now
+    # }
   }
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
+    # {}
   }
 
   # This should return the minimal set of values that should be in the headers

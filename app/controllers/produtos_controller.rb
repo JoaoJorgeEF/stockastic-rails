@@ -18,6 +18,10 @@ class ProdutosController < ApplicationController
   def create
     @produto = Produto.new(produto_params)
     @produto.users << current_user
+    @produto.notifications << Notification.new(
+      mensagem: "Produto #{@produto.nome} cadastrado com sucesso!"
+    )
+
     if @produto.save!
       render json: @produto, status: :created, location: @produto
     else
@@ -27,6 +31,9 @@ class ProdutosController < ApplicationController
 
   # PATCH/PUT /produtos/1
   def update
+    @produto.notifications << Notification.new(
+      mensagem: "Produto #{@produto.nome} atualizado com sucesso!"
+    )
     if @produto.update(produto_params)
       render json: @produto
     else
