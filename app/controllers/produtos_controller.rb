@@ -21,6 +21,7 @@ class ProdutosController < ApplicationController
     @produto.notifications << Notification.new(
       mensagem: "Produto #{@produto.nome} cadastrado com sucesso!"
     )
+    @produto.tornar_disponivel
 
     if @produto.save!
       render json: @produto, status: :created, location: @produto
