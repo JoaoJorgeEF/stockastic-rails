@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_07_133633) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_07_165059) do
   create_table "categories", force: :cascade do |t|
     t.text "nome"
     t.text "descricao"
@@ -37,6 +37,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_133633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category_id"
+    t.string "status", default: "desconhecido"
     t.index ["category_id"], name: "index_produtos_on_category_id"
   end
 
@@ -53,7 +54,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_07_133633) do
     t.string "username", default: "", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "type"
+    t.string "tipo"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
