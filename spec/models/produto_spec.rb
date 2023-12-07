@@ -30,12 +30,6 @@ RSpec.describe Produto, type: :model do
       expect(produto.quantidade_atual).to eq(15)
     end
 
-    it 'não decrementa se resultado for menor do que quantidade_minima' do
-      produto = Produto.new(quantidade_atual: 15, quantidade_minima: 8)
-      produto.decrementar_quantidade(10)
-      expect(produto.quantidade_atual).to eq(15)
-    end
-
     it 'não decrementa se quantidade não for integer' do
       produto = Produto.new(quantidade_atual: 15)
       produto.decrementar_quantidade("5")

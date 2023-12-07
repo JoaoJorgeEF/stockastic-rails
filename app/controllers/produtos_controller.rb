@@ -5,12 +5,13 @@ class ProdutosController < ApplicationController
   # GET /produtos
   def index
     @produtos = Produto.by_user(current_user.id)
-
+    authorize! :read, @produtos
     render json: @produtos
   end
 
   # GET /produtos/1
   def show
+    authorize! :read, @produto
     render json: @produto
   end
 
@@ -18,11 +19,13 @@ class ProdutosController < ApplicationController
   def create
     @produto = Produto.new(produto_params)
     @produto.users << current_user
+    # authorize! :create, @produto
+
     @produto.notifications << Notification.new(
       mensagem: "Produto #{@produto.nome} cadastrado com sucesso!"
     )
     @produto.tornar_disponivel
-
+    
     if @produto.save!
       render json: @produto, status: :created, location: @produto
     else
@@ -32,6 +35,8 @@ class ProdutosController < ApplicationController
 
   # PATCH/PUT /produtos/1
   def update
+    authorize! :update, @produto
+
     @produto.notifications << Notification.new(
       mensagem: "Produto #{@produto.nome} atualizado com sucesso!"
     )
@@ -43,6 +48,8 @@ class ProdutosController < ApplicationController
   end
 
   def incrementar_quantidade
+    authorize! :update, @produto
+    
     @produto.incrementar_quantidade(params[:quantidade].to_i)
     if @produto.save!
       render json: @produto
@@ -52,6 +59,8 @@ class ProdutosController < ApplicationController
   end
 
   def decrementar_quantidade
+    authorize! :update, @produto
+
     @produto.decrementar_quantidade(params[:quantidade].to_i)
     if @produto.save
       render json: @produto
@@ -62,6 +71,7 @@ class ProdutosController < ApplicationController
 
   # DELETE /produtos/1
   def destroy
+    authorize! :destroy, @produto
     @produto.destroy!
   end
 

@@ -12,6 +12,7 @@ gem "sqlite3", "~> 1.4"
 gem "puma", ">= 5.0"
 
 gem 'aasm', '~> 5.5'
+gem 'cancancan'
 
 gem "devise"
 gem 'devise-jwt'

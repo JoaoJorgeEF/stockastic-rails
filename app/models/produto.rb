@@ -62,7 +62,7 @@ class Produto < ApplicationRecord
 
     self.quantidade_atual += quantidade
 
-    if (zerado? || quantidade_baixa?) && quantidade_atual > self.quantidade_minima
+    if (zerado? || baixa_quantidade?) && quantidade_atual > self.quantidade_minima
       tornar_disponivel
     end
     notificar("#{nome} incrementou de #{quantidade_atual-quantidade} para #{quantidade_atual}")
