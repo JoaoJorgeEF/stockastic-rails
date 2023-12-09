@@ -5,6 +5,7 @@ class Produto < ApplicationRecord
   has_many :user_produtos
   has_many :users, through: :user_produtos
   has_many :notifications
+  belongs_to :category
 
   # VALIDATIONS
   validates :nome, presence: true
