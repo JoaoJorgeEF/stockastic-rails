@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :notifications
+  resources :notifications do
+    collection do
+      get :by_produto
+    end
+  end
   resources :categories
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

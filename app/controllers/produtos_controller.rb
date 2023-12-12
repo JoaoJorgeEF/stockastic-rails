@@ -30,7 +30,7 @@ class ProdutosController < ApplicationController
   def create
     @produto = Produto.new(produto_params)
     @produto.users << current_user
-    # authorize! :create, @produto
+    authorize! :create, @produto
 
     @produto.notifications << Notification.new(
       mensagem: "Produto #{@produto.nome} cadastrado com sucesso!"

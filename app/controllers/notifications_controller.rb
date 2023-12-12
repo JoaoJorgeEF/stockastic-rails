@@ -8,6 +8,12 @@ class NotificationsController < ApplicationController
     render json: @notifications
   end
 
+  def by_produto
+    @notifications = Notification.where(produto_id: params[:produto_id])
+
+    render json: @notifications
+  end
+
   # GET /notifications/1
   def show
     render json: @notification
