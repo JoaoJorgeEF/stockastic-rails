@@ -4,14 +4,25 @@ class ProdutosController < ApplicationController
 
   # GET /produtos
   def index
-    @produtos = Produto.by_user(current_user.id)
+    @produtos = Produto.by_user(current_user.id).page(params[:page] || 1).per(params[:per_page] || 10)
     authorize! :read, @produtos
+
+    @produtos = @produtos.map do |prod|
+      prod.as_json.merge({
+        category: prod.category&.nome,
+        notifications: prod.notifications.pluck(:mensagem)
+      })
+    end
     render json: @produtos
   end
 
   # GET /produtos/1
   def show
     authorize! :read, @produto
+    @produto = @produto.as_json.merge({
+      category: @produto.category&.nome,
+      notifications: @produto.notifications.pluck(:mensagem)
+    })
     render json: @produto
   end
 
@@ -83,6 +94,6 @@ class ProdutosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def produto_params
-      params.require(:produto).permit(:nome, :validade, :descricao, :preco_unitario, :quantidade_atual, :quantidade_minima)
+      params.require(:produto).permit(:nome, :validade, :descricao, :preco_unitario, :quantidade_atual, :quantidade_minima, :category_id)
     end
 end

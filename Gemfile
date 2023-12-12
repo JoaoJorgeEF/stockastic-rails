@@ -13,6 +13,7 @@ gem "puma", ">= 5.0"
 
 gem 'aasm', '~> 5.5'
 gem 'cancancan'
+gem 'kaminari', '~> 1.2', '>= 1.2.2'
 
 gem "devise"
 gem 'devise-jwt'
