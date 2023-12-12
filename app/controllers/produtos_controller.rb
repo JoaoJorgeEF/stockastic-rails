@@ -4,8 +4,15 @@ class ProdutosController < ApplicationController
 
   # GET /produtos
   def index
-    @produtos = Produto.by_user(current_user.id)
+    @produtos = Produto.by_user(current_user.id).page(params[:page] || 1).per(params[:per_page] || 10)
     authorize! :read, @produtos
+
+    @produtos = @produtos.map do |prod|
+      prod.as_json.merge({
+        category: prod.category&.nome,
+        notifications: prod.notifications.pluck(:mensagem)
+      })
+    end
     render json: @produtos
   end
 
